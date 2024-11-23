@@ -4,8 +4,8 @@ import { NextResponse } from 'next/server'
 export async function GET(request: Request) {
 
     const {searchParams}= new URL(request.url);
-    const take = searchParams.get('take') ?? '10';
-    const skip = searchParams.get('skip') ?? '0';
+    const take = Number(searchParams.get('take') ?? '10')
+    const skip = Number(searchParams.get('skip') ?? '0')
 
     if (isNaN(+take)) {
       return NextResponse.json({ error: 'Invalid take parameter' }, { status: 400 });
@@ -16,8 +16,8 @@ export async function GET(request: Request) {
 
       
     const todos = await prisma.todo.findMany({
-      take: +take,
-      skip: +skip,
+      take,
+      skip
     });
 
   return NextResponse.json(todos);
