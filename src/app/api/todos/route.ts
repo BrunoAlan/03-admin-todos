@@ -10,6 +10,10 @@ export async function GET(request: Request) {
     if (isNaN(+take)) {
       return NextResponse.json({ error: 'Invalid take parameter' }, { status: 400 });
     }
+    if (isNaN(+skip)) {
+      return NextResponse.json({ error: 'Invalid skip parameter' }, { status: 400 });
+    }
+
       
     const todos = await prisma.todo.findMany({
       take: +take,
