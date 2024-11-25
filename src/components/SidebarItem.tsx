@@ -13,7 +13,8 @@ export const SidebarItem = ({icon,path,title}:Props) => {
 
   return (
           <li>
-            <Link href={path} className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl text-gray-600 group
+            <Link href={path} className={` px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group
+              hover:bg-gradient-to-r hover:bg-sky-600 hover:text-white
               ${pathName === path ? " text-white bg-gradient-to-r from-sky-600 to-cyan-400":''}
               `}>
               {icon}
