@@ -1,7 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
-import {  CiLogout } from "react-icons/ci";
+import {  CiBookmarkCheck, CiLogout } from "react-icons/ci";
 import { SidebarItem } from "./SidebarItem";
+
+
+const menuItems = [
+  {
+    icon: <CiBookmarkCheck />,
+    title: "Dashboard",
+    path: "/dashboard",
+  },
+
+]
+
 
 export const Sidebar = () => {
   return (
@@ -16,13 +27,16 @@ export const Sidebar = () => {
 
         <div className="mt-8 text-center">
           
-          <Image src="https://tailus.io/sources/blocks/stats-cards/preview/images/second_user.webp" alt="" width={32} height={32} className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"/>
+          <Image src="https://images.unsplash.com/photo-1542909168-82c3e7fdca5c" alt="" width={32} height={32} className="w-32 h-32 m-auto rounded-full object-cover lg:w-32 lg:h-32"/>
             <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">Cynthia J. Watts</h5>
             <span className="hidden text-gray-400 lg:block">Admin</span>
         </div>
 
         <ul className="space-y-2 tracking-wide mt-8">
-         <SidebarItem/>
+          {menuItems.map((item, index) => (
+            <SidebarItem key={index} {...item} />
+          ))}
+
         </ul>
       </div>
 
