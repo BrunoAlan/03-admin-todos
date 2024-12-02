@@ -1,14 +1,28 @@
 'use client';
 
+import { FormEvent, useState } from 'react';
 import { IoTrashOutline } from 'react-icons/io5';
+import { createTodo } from '../helpers/todos';
+import { useRouter } from 'next/navigation';
 
 export const NewTodo = () => {
+    const [description, setDescription] = useState('');
+    const router = useRouter();
+
+    const onSubmit = async (event: FormEvent) => {
+        event.preventDefault();
+        if (!description.trim()) return;
+        await createTodo(description);
+        router.refresh();
+    };
+
     return (
-        <form className='flex w-full'>
+        <form onSubmit={onSubmit} className='flex w-full'>
             <input
                 type='text'
                 className='w-6/12 -ml-10 pl-3 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-sky-500 transition-all'
                 placeholder='¿Qué necesita ser hecho?'
+                onChange={(event) => setDescription(event.target.value)}
             />
 
             <button
