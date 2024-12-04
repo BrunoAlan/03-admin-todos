@@ -34,3 +34,11 @@ export const createTodo = async (description: string): Promise<Todo> => {
     console.log(todo);
     return todo;
 };
+
+export const deleteTodo = async ()=>{
+    const todos = await fetch(`/api/todos`, {
+        method: 'DELETE',
+    }).then((res) => res.json());
+    console.log(todos);
+    return todos;
+}
