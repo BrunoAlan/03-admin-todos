@@ -41,3 +41,19 @@ export const addTodo = async (description: string) => {
         };
     }
 };
+
+export const deleteCompleted = async () => {
+    try {
+        await prisma.todo.deleteMany({
+            where: {
+                complete: true,
+            },
+        });
+
+        revalidateTag('dashboard/server-todos');
+    } catch {
+        return {
+            message: 'Error deleting todos',
+        };
+    }
+};
