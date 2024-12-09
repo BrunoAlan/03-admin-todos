@@ -2,9 +2,10 @@
 
 import { FormEvent, useState } from 'react';
 import { IoTrashOutline } from 'react-icons/io5';
-import { createTodo } from '../helpers/todos';
+// import { createTodo } from '../helpers/todos';
 import { useRouter } from 'next/navigation';
 import { deleteTodo } from '../helpers/todos';
+import { addTodo } from '../actions/todo-actions';
 
 export const NewTodo = () => {
     const [description, setDescription] = useState('');
@@ -13,7 +14,8 @@ export const NewTodo = () => {
     const onSubmit = async (event: FormEvent) => {
         event.preventDefault();
         if (!description.trim()) return;
-        await createTodo(description);
+        // await createTodo(description);
+        await addTodo(description);
         router.refresh();
     };
 
