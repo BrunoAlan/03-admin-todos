@@ -23,3 +23,21 @@ export const toggleTodo = async (
     revalidateTag('dashboard/server-todos');
     return updatededTodo;
 };
+
+export const addTodo = async (description: string) => {
+    try {
+        const newTodo = await prisma.todo.create({
+            data: {
+                description,
+            },
+        });
+
+        revalidateTag('dashboard/server-todos');
+
+        return newTodo;
+    } catch {
+        return {
+            message: 'Error creating todo',
+        };
+    }
+};
