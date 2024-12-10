@@ -16,8 +16,6 @@ export default async function ServerTodosPage() {
         },
     });
 
-    console.log('construido');
-
     return (
         <div>
             <span className='text-3xl mb-10'>Server Actions </span>
