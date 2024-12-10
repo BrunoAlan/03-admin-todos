@@ -13,14 +13,11 @@ export const NewTodo = () => {
     const onSubmit = async (event: FormEvent) => {
         event.preventDefault();
         if (!description.trim()) return;
-        // await createTodo(description);
         await addTodo(description);
-        router.refresh();
     };
 
     const onDeleteCompleted = async () => {
         await deleteCompleted();
-        router.refresh();
     };
 
     return (
