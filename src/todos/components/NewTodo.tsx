@@ -2,13 +2,10 @@
 
 import { FormEvent, useState } from 'react';
 import { IoTrashOutline } from 'react-icons/io5';
-// import { createTodo } from '../helpers/todos';
-import { useRouter } from 'next/navigation';
 import { addTodo, deleteCompleted } from '../actions/todo-actions';
 
 export const NewTodo = () => {
     const [description, setDescription] = useState('');
-    const router = useRouter();
 
     const onSubmit = async (event: FormEvent) => {
         event.preventDefault();
