@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+
 const TAB_OPTIONS = [1, 2, 3, 4];
 
 interface Props {
@@ -8,6 +10,12 @@ interface Props {
 }
 export const TabBar = ({ tabOptions = TAB_OPTIONS, currentTab = 1 }: Props) => {
     const gridClass = `grid-cols-${tabOptions.length}`;
+
+    const [selected, setSelected] = useState(currentTab);
+
+    const onTabSelected = (tab: number) => {
+        setSelected(tab);
+    };
 
     return (
         <div
@@ -19,8 +27,13 @@ export const TabBar = ({ tabOptions = TAB_OPTIONS, currentTab = 1 }: Props) => {
                         type='radio'
                         id={tab.toString()}
                         className='peer hidden'
+                        checked={selected === tab}
+                        onChange={() => {}}
                     />
-                    <label className='block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white'>
+                    <label
+                        onClick={() => onTabSelected(tab)}
+                        className='transition-all block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white'
+                    >
                         {tab}
                     </label>
                 </div>
