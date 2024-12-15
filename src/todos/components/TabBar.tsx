@@ -1,6 +1,12 @@
-const tabOptions = [1, 2, 3, 4, 5];
+'use client';
 
-export const TabBar = () => {
+const TAB_OPTIONS = [1, 2, 3, 4];
+
+interface Props {
+    currentTab?: number;
+    tabOptions?: number[];
+}
+export const TabBar = ({ tabOptions = TAB_OPTIONS, currentTab = 1 }: Props) => {
     const gridClass = `grid-cols-${tabOptions.length}`;
 
     return (
