@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { CiBookmarkCheck, CiLogout } from 'react-icons/ci';
 import { SidebarItem } from './SidebarItem';
 import {
+    IoBasketOutline,
     IoCheckboxOutline,
     IoCodeWorking,
     IoListOutline,
 } from 'react-icons/io5';
-import path from 'path';
 
 const menuItems = [
     {
@@ -29,6 +29,11 @@ const menuItems = [
         icon: <IoCodeWorking />,
         title: 'Cookies',
         path: '/dashboard/cookies',
+    },
+    {
+        icon: <IoBasketOutline />,
+        title: 'Products',
+        path: '/dashboard/products',
     },
 ];
 
