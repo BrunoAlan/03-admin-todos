@@ -29,5 +29,15 @@ export const addProductToCart = async (id: string): Promise<void> => {
         cookieCart[id] = 1;
     }
     setCookie('cart', JSON.stringify(cookieCart));
-}
+};
 
+export const removeProductFromCart = async (id: string): Promise<void> => {
+    const cookieCart = await getCookieCart();
+    if (cookieCart[id]) {
+        cookieCart[id] -= 1;
+        if (cookieCart[id] === 0) {
+            delete cookieCart[id];
+        }
+        setCookie('cart', JSON.stringify(cookieCart));
+    }
+};
