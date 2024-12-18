@@ -33,11 +33,6 @@ export const addProductToCart = async (id: string): Promise<void> => {
 
 export const removeProductFromCart = async (id: string): Promise<void> => {
     const cookieCart = await getCookieCart();
-    if (cookieCart[id]) {
-        cookieCart[id] -= 1;
-        if (cookieCart[id] === 0) {
-            delete cookieCart[id];
-        }
-        setCookie('cart', JSON.stringify(cookieCart));
-    }
+    if (cookieCart[id]) delete cookieCart[id];
+    setCookie('cart', JSON.stringify(cookieCart));
 };
