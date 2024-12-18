@@ -1,6 +1,6 @@
 'use client';
 
-import { getCookie, hasCookie } from 'cookies-next';
+import { getCookie, hasCookie, setCookie } from 'cookies-next';
 
 /*
 Shopping Cart object
@@ -21,5 +21,13 @@ export const getCookieCart = async (): Promise<{ [id: string]: number }> => {
     return {};
 };
 
-
+export const addProductToCart = async (id: string): Promise<void> => {
+    const cookieCart = await getCookieCart();
+    if (cookieCart[id]) {
+        cookieCart[id] += 1;
+    } else {
+        cookieCart[id] = 1;
+    }
+    setCookie('cart', JSON.stringify(cookieCart));
+}
 
