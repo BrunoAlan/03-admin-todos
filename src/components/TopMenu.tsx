@@ -1,5 +1,4 @@
 import {
-    CiBellOn,
     CiChat1,
     CiMenuBurger,
     CiSearch,
