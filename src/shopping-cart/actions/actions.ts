@@ -36,3 +36,13 @@ export const removeProductFromCart = async (id: string): Promise<void> => {
     if (cookieCart[id]) delete cookieCart[id];
     setCookie('cart', JSON.stringify(cookieCart));
 };
+
+export const removeSingleItemFromCart = async (id: string): Promise<void> => {
+    const cookieCart = await getCookieCart();
+    if (cookieCart[id] > 1) {
+        cookieCart[id] -= 1;
+    } else {
+        delete cookieCart[id];
+    }
+    setCookie('cart', JSON.stringify(cookieCart));
+};
