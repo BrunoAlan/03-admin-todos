@@ -1,12 +1,11 @@
 'use client';
 
-import type { Product } from '@/data/products';
 import Image from 'next/image';
 
 import { IoAddCircleOutline, IoRemove } from 'react-icons/io5';
-import {} from '../actions/actions';
 
 import { useRouter } from 'next/navigation';
+import type { Product } from '../data/products';
 
 interface Props {
     product: Product;
