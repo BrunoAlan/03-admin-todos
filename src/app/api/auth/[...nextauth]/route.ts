@@ -1,3 +1,4 @@
+import { signInEmailPassword } from '@/auth/actions/auth-actions';
 import prisma from '@/lib/prisma';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import NextAuth, { NextAuthOptions } from 'next-auth';
@@ -20,20 +21,22 @@ export const authOptions: NextAuthOptions = {
         Credentials({
             name: 'Credentials',
             credentials: {
-                username: { label: 'Username' },
+                email: { label: 'Email' },
                 password: {
                     label: 'Password',
                     type: 'password',
                     placeholder: '*****',
                 },
             },
-            async authorize({ username, password }) {
-                const user = {
-                    id: '1',
-                    name: 'john',
-                    email: 'jsmith@example.com',
-                };
-                return user;
+            async authorize(credentials) {
+                const user = await signInEmailPassword(
+                    credentials!.email,
+                    credentials!.password
+                );
+                if (user) {
+                    return user;
+                }
+                return null;
             },
         }),
     ],
