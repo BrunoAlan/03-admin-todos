@@ -11,6 +11,7 @@ import {
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { SidebarItem, LogoutButton } from '@/components';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 const menuItems = [
     {
@@ -46,7 +47,7 @@ const menuItems = [
 ];
 
 export const Sidebar = async () => {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     if (!session) redirect('/api/auth/signin');
 
     return (
@@ -86,7 +87,9 @@ export const Sidebar = async () => {
                     <h5 className='hidden mt-4 text-xl font-semibold text-gray-600 lg:block'>
                         {session?.user?.name}
                     </h5>
-                    <span className='hidden text-gray-400 lg:block'>Admin</span>
+                    <span className='hidden text-gray-400 lg:block'>
+                        {session.user?.roles?.join(', ')}
+                    </span>
                 </div>
 
                 <ul className='space-y-2 tracking-wide mt-8'>
