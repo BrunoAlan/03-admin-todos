@@ -95,7 +95,9 @@ export const Sidebar = async () => {
                     ))}
                 </ul>
             </div>
-            <LogoutButton />
+            <div className='px-6 -mx-6 pt-4 flex justify-between items-center border-t'>
+                <LogoutButton />
+            </div>
         </aside>
     );
 };
